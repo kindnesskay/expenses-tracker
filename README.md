@@ -23,4 +23,4 @@ Expense Tracker is a simple web application built with React that helps you keep
 
 ## Credits
 
-- Icons used in this project were sourced from ![icons8](https://www.icons8.com).
+- Icons used in this project were sourced from icons8.com.
