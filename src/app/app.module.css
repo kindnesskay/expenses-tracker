@@ -1,0 +1,274 @@
+.app {
+  position: relative;
+  border-radius: 10px;
+  background-color: #faf6f6;
+  font-family: monospace;
+  box-sizing: border-box;
+  height: 100%;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 90%;
+}
+.whiteText {
+  color: #fff;
+}
+.circleFrame {
+  border-radius: 50%;
+}
+.asserts {
+  border-radius: 10px;
+  height: 30%;
+  width: 100%;
+  background-color: #0d8df6;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.asserts .availableBalance {
+  text-align: center;
+  font-size: 25px;
+  line-height: 5px;
+  font-weight: 700;
+  color: #fff;
+  height: 60%;
+}
+.asserts .availableBalance span::before {
+  content: "$";
+  color: #fff;
+}
+.asserts .spending {
+  line-height: 5px;
+  height: 30%;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.asserts .spending div {
+  font-size: 15px;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+}
+.asserts .spending span {
+  color: #fff;
+}
+.asserts .spending span::before {
+  content: "$";
+  color: #fff;
+}
+
+/* Transactions */
+.transactions {
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 100%;
+  height: 70%;
+}
+.transactionHistory {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  height: 80%;
+  overflow: auto;
+}
+
+.transactions .transactionActions {
+  display: flex;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 15%;
+  justify-content: space-between;
+  align-items: center;
+}
+.transactions .transactionActions p {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.transactionActions span:hover {
+  cursor: pointer;
+}
+.transactions .transactionActions span {
+  transition: all 0.2s;
+  color: #ada8a8;
+}
+.transactionActions span:hover {
+  transition: all 0.2s;
+}
+
+.transaction {
+  user-select: none;
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 95%;
+  height: 30%;
+  border-radius: 20px;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+  transition: all 0.3s;
+}
+.transaction:hover {
+  cursor: pointer;
+}
+.transaction:hover {
+  transition: all 0.3s;
+  transform: scale(105%);
+  background-color: #0d8df694;
+  color: #fff;
+}
+.descriptionLeft {
+  height: 100%;
+  align-items: center;
+  width: 70%;
+  display: flex;
+  gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: space-between;
+}
+.descriptionLeft span {
+  width: 100%;
+  text-align: center;
+}
+.descriptionRight {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.delete {
+}
+.delete:hover {
+  filter: brightness(20%);
+}
+/* navigatio */
+
+.quickAccess {
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 100%;
+  display: flex;
+  height: 10%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* expenses form */
+.addExpenses {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+}
+.expensesForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+.expensesForm input {
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: none;
+}
+.expensesForm input[type="submit"] {
+  transition: all 0.3s;
+  background-color: #0d8df694;
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+}
+.expensesForm input[type="submit"]:hover {
+  transition: all 0.3s;
+  background-color: #0d8df6;
+}
+/* category */
+.category {
+  transition: all 0.3s;
+  user-select: none;
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #fff;
+}
+.category:hover {
+  cursor: pointer;
+}
+.category:hover {
+  transition: all 0.3s;
+  background-color: #0d8df694;
+}
+.category:hover p {
+  color: #fff;
+}
+.dropDownItems {
+  box-sizing: border-box;
+  position: absolute;
+  transform: translateY(110px);
+  display: flex;
+  padding: 5px;
+  height: 150px;
+  width: 100%;
+  overflow: auto;
+  flex-direction: column;
+  gap: 5px;
+}
+.dropDownItems li {
+  transition: all 0.3s;
+  list-style: none;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #000;
+}
+.dropDownItems li:hover {
+  transition: all 0.3s;
+  background-color: #0d8df694;
+  color: #fff;
+}
