@@ -14,7 +14,7 @@ const icons = [
   { name: "Food", src: "/icons/fast-food.png" },
   { name: "Internet", src: "/icons/wifi.png" },
   { name: "Travel", src: "/icons/airplane.png" },
-  { name: "Drink", src: "/icons/Soft-drink.png" },
+  { name: "Drink", src: "/icons/soft-drink.png" },
   { name: "Ride", src: "/icons/uber.png" },
   { name: "meceleneous", src: "/icons/bill.png" },
 ];
