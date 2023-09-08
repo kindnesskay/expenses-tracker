@@ -78,11 +78,18 @@ export default function App() {
   useEffect(() => {
     if (getFromLocalStorage(db)["id"]) return;
     newStorage();
+    fixStorage();
   }, []);
 
-  function newStorage() {
+  function fixStorage() {
     if (!localStorage.getItem(db)) return;
     let oldStorage = getFromLocalStorage(db);
+    if (oldStorage["transaction"]["transaction"]) {
+      localStorage.removeItem(db);
+    }
+  }
+  function newStorage() {
+    if (!localStorage.getItem(db)) return;
     oldStorage = oldStorage.map((item, index) => {
       return { id: index + 1, ...item };
     });

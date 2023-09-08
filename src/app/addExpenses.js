@@ -42,7 +42,7 @@ export default function AddExpenses({ items, trackTransaction, getStored }) {
     }
     localStorage.setItem(
       db,
-      JSON.stringify({ id: 1, transactions: { id: 1, transaction: trackData } })
+      JSON.stringify({ id: 1, transactions: [{ id: 1, trackData }] })
     );
   }, [trackData]);
   return (
