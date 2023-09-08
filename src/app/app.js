@@ -76,9 +76,9 @@ export default function App() {
   }, [newTransaction]);
 
   useEffect(() => {
+    fixStorage();
     if (getFromLocalStorage(db)["id"]) return;
     newStorage();
-    fixStorage();
   }, []);
 
   function fixStorage() {
