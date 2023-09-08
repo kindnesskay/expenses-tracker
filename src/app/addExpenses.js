@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import appStyles from "./app.module.css";
 import Category from "./category";
-import { db } from "./localStorage";
-export default function AddExpenses({ items, trackTransaction }) {
+import { db, getFromLocalStorage } from "./localStorage";
+export default function AddExpenses({ items, trackTransaction, getStored }) {
   const [showItems, setShowItems] = useState(false);
   const [data, setData] = useState({});
   const [trackData, setTrackData] = useState();
@@ -28,13 +28,22 @@ export default function AddExpenses({ items, trackTransaction }) {
   useEffect(() => {
     if (!trackData) return;
     if (localStorage.getItem(db)) {
-      let stored = localStorage.getItem(db);
-      stored = JSON.parse(stored);
-      let newData = [...stored, trackData];
-      localStorage.setItem(db, JSON.stringify(newData));
+      let stored = getFromLocalStorage(db);
+
+      let stored_id = stored["id"];
+      stored_id++;
+      stored["id"] = stored_id;
+
+      let stored_transactions = stored["transactions"];
+      stored_transactions.push({ id: stored_id, ...trackData });
+
+      localStorage.setItem(db, JSON.stringify(stored));
       return;
     }
-    localStorage.setItem(db, JSON.stringify([trackData]));
+    localStorage.setItem(
+      db,
+      JSON.stringify({ id: 1, transactions: { id: 1, transaction: trackData } })
+    );
   }, [trackData]);
   return (
     <ExpensesForm

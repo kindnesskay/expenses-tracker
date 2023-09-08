@@ -9,7 +9,7 @@ import { getFromLocalStorage } from "./localStorage";
 import { Transactions } from "./transaction";
 import { QuickAccess } from "./navigations";
 import Asserts from "./asserts";
-import Successful from "./successful";
+
 const icons = [
   { name: "Food", src: "/icons/fast-food.png" },
   { name: "Internet", src: "/icons/wifi.png" },
@@ -37,13 +37,26 @@ export default function App() {
   const handleAdd = () => {
     setHome(!home);
     setCreateNew(!createNew);
-    if (quickAccessIcon == quickAccessIcons.home) {
+    if (quickAccessIcon == quickAccessIcons.home && home == true) {
       setQuickAccessIcon(quickAccessIcons.add);
       return;
     }
     setQuickAccessIcon(quickAccessIcons.home);
   };
 
+  const handleDelete = (id) => {
+    let items = transactions.filter((item) => {
+      return Number(item.id) != Number(id);
+    });
+
+    let stored = getFromLocalStorage(db);
+    let clear = () => {
+      setTransactions(items);
+    };
+    const myTimeout = setTimeout(clear, 300);
+    stored["transactions"] = items;
+    localStorage.setItem(db, JSON.stringify(stored));
+  };
   function trackTransaction(trans) {
     setNewTransaction(trans);
   }
@@ -58,10 +71,24 @@ export default function App() {
 
   useEffect(() => {
     let data = getFromLocalStorage(db);
-    setTransactions(data);
+    setTransactions(data.transactions);
     handleAdd();
   }, [newTransaction]);
 
+  useEffect(() => {
+    if (getFromLocalStorage(db)["id"]) return;
+    newStorage();
+  }, []);
+
+  function newStorage() {
+    if (!localStorage.getItem(db)) return;
+    let oldStorage = getFromLocalStorage(db);
+    oldStorage = oldStorage.map((item, index) => {
+      return { id: index + 1, ...item };
+    });
+    let template = { id: oldStorage.length, transactions: oldStorage };
+    localStorage.setItem(db, JSON.stringify(template));
+  }
   return (
     <div className={appStyles.app}>
       <div className={appStyles.contents}>
@@ -73,7 +100,9 @@ export default function App() {
               totalIncome={totalIncome}
             />
 
-            {transactions && <Transactions items={transactions} />}
+            {transactions && (
+              <Transactions items={transactions} handleDelete={handleDelete} />
+            )}
           </>
         )}
         {createNew && (

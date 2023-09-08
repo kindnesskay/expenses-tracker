@@ -11,6 +11,7 @@ Expense Tracker is a simple web application built with React that helps you keep
 - **Transaction History:** View a comprehensive transaction history, description, and amount for each entry.
 
 - **Expense Balance:** Keep track of your total expenses
+- - **Delete Transaction** Remove a transaction
 
 ## continued development
 
@@ -19,7 +20,6 @@ Expense Tracker is a simple web application built with React that helps you keep
 - **Category Filters:** Filter transactions by category to get a clear picture of where your money is going.
 
 - **Chart Visualization:** Visualize your financial data with interactive charts to analyze your spending patterns over time.
-- **Delete Transaction**
 
 ## Credits
 

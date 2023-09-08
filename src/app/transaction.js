@@ -1,8 +1,9 @@
 "use client";
+import { useState } from "react";
 import appStyles from "./app.module.css";
 import Image from "next/image";
 
-export function Transactions({ items }) {
+export function Transactions({ items, handleDelete }) {
   return (
     <div className={appStyles.transactions}>
       <div className={appStyles.transactionActions}>
@@ -10,14 +11,17 @@ export function Transactions({ items }) {
       </div>
 
       <div className={appStyles.transactionHistory}>
-        {items.map((data, index) => {
+        {items.map((data) => {
           return (
             <Transaction
-              key={index}
+              key={data.id}
               category={data.category}
               note={data.note}
               amount={data.amount}
               date={data.date}
+              handleDelete={() => {
+                handleDelete(data.id);
+              }}
             />
           );
         })}
@@ -26,8 +30,15 @@ export function Transactions({ items }) {
   );
 }
 export function Transaction({ category, note, amount, date, handleDelete }) {
+  const [transaction_class, setTransaction_class] = useState(
+    appStyles.transaction
+  );
+  function animationOnDelete() {
+    setTransaction_class(transaction_class + " " + appStyles.animate_delete);
+    handleDelete();
+  }
   return (
-    <div className={appStyles.transaction}>
+    <div className={transaction_class}>
       <div className={appStyles.descriptionLeft}>
         <Image
           loading="lazy"
@@ -44,7 +55,7 @@ export function Transaction({ category, note, amount, date, handleDelete }) {
         <span>{date}</span>
       </div>
       <Image
-        onClick={handleDelete}
+        onClick={animationOnDelete}
         src={"/icons/delete-90.png"}
         height={30}
         width={30}

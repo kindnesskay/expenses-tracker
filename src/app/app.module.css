@@ -157,10 +157,22 @@
   align-items: center;
   gap: 10px;
 }
-.delete {
-}
+
 .delete:hover {
   filter: brightness(20%);
+}
+
+.animate_delete {
+  position: relative;
+  animation: moveLeft 0.3s;
+}
+@keyframes moveLeft {
+  from {
+    left: 0;
+  }
+  to {
+    left: -150%;
+  }
 }
 /* navigatio */
 
