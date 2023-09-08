@@ -84,10 +84,10 @@ export default function App() {
   function fixStorage() {
     if (!localStorage.getItem(db)) return;
     let oldStorage = getFromLocalStorage(db);
-    if (
-      oldStorage["transactions"]["transaction"] ||
-      oldStorage["transactions"][0].trackData
-    ) {
+    if (oldStorage["transactions"][0]["trackData"]) {
+      localStorage.removeItem(db);
+    }
+    if (oldStorage["transactions"]["transaction"]) {
       localStorage.removeItem(db);
     }
   }
