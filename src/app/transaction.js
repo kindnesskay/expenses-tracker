@@ -4,28 +4,36 @@ import appStyles from "./app.module.css";
 import Image from "next/image";
 
 export function Transactions({ items, handleDelete }) {
+  let date = new Date().toLocaleDateString();
   return (
     <div className={appStyles.transactions}>
       <div className={appStyles.transactionActions}>
         <p>Transactions</p>
+        <p className={appStyles.date}>{date}</p>
       </div>
-
-      <div className={appStyles.transactionHistory}>
-        {items.map((data) => {
-          return (
-            <Transaction
-              key={data.id}
-              category={data.category}
-              note={data.note}
-              amount={data.amount}
-              date={data.date}
-              handleDelete={() => {
-                handleDelete(data.id);
-              }}
-            />
-          );
-        })}
-      </div>
+      {!items.length > 0 && (
+        <div className={appStyles.loading}>
+          <p>No transaction</p>
+        </div>
+      )}
+      {items && (
+        <div className={appStyles.transactionHistory}>
+          {items.map((data) => {
+            return (
+              <Transaction
+                key={data.id}
+                category={data.category}
+                note={data.note}
+                amount={data.amount}
+                date={data.date}
+                handleDelete={() => {
+                  handleDelete(data.id);
+                }}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -52,7 +60,7 @@ export function Transaction({ category, note, amount, date, handleDelete }) {
       </div>
       <div className={appStyles.descriptionRight}>
         <span>{amount}</span>
-        <span>{date}</span>
+        <span className={appStyles.date}>{date}</span>
       </div>
       <Image
         onClick={animationOnDelete}

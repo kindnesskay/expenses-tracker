@@ -16,7 +16,7 @@ export default function AddExpenses({ items, trackTransaction, getStored }) {
   };
 
   const getCategory = (category) => {
-    setData({ ...data, category });
+    setData({ ...data, date: new Date().toLocaleDateString(), category });
   };
   const getAmount = (amount) => {
     setData({ ...data, amount });

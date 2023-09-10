@@ -37,11 +37,9 @@ export default function App() {
   const handleAdd = () => {
     setHome(!home);
     setCreateNew(!createNew);
-    if (quickAccessIcon == quickAccessIcons.home && home == true) {
-      setQuickAccessIcon(quickAccessIcons.add);
-      return;
-    }
-    setQuickAccessIcon(quickAccessIcons.home);
+    return !home
+      ? setQuickAccessIcon(quickAccessIcons.add)
+      : setQuickAccessIcon(quickAccessIcons.home);
   };
 
   const handleDelete = (id) => {
@@ -75,30 +73,6 @@ export default function App() {
     handleAdd();
   }, [newTransaction]);
 
-  useEffect(() => {
-    fixStorage();
-    if (getFromLocalStorage(db)["id"]) return;
-    newStorage();
-  }, []);
-
-  function fixStorage() {
-    if (!localStorage.getItem(db)) return;
-    let oldStorage = getFromLocalStorage(db);
-    if (oldStorage["transactions"][0]["trackData"]) {
-      localStorage.removeItem(db);
-    }
-    if (oldStorage["transactions"]["transaction"]) {
-      localStorage.removeItem(db);
-    }
-  }
-  function newStorage() {
-    if (!localStorage.getItem(db)) return;
-    oldStorage = oldStorage.map((item, index) => {
-      return { id: index + 1, ...item };
-    });
-    let template = { id: oldStorage.length, transactions: oldStorage };
-    localStorage.setItem(db, JSON.stringify(template));
-  }
   return (
     <div className={appStyles.app}>
       <div className={appStyles.contents}>
@@ -110,9 +84,7 @@ export default function App() {
               totalIncome={totalIncome}
             />
 
-            {transactions && (
-              <Transactions items={transactions} handleDelete={handleDelete} />
-            )}
+            <Transactions items={transactions} handleDelete={handleDelete} />
           </>
         )}
         {createNew && (
