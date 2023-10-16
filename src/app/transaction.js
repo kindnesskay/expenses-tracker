@@ -11,7 +11,7 @@ export function Transactions({ items, handleDelete }) {
         <p>Transactions</p>
         <p className={appStyles.date}>{date}</p>
       </div>
-      {!items.length > 0 && (
+      {!items && (
         <div className={appStyles.loading}>
           <p>No transaction</p>
         </div>

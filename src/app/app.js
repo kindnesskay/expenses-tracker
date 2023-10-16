@@ -30,7 +30,7 @@ export default function App() {
   const [totalIncome, setTotalIncome] = useState(0);
   const [home, setHome] = useState(true);
   const [createNew, setCreateNew] = useState(false);
-  const [transactions, setTransactions] = useState(false);
+  const [transactions, setTransactions] = useState([]);
   const [newTransaction, setNewTransaction] = useState([]);
   const [quickAccess, setQuickAccess] = useState(true);
   const [quickAccessIcon, setQuickAccessIcon] = useState(quickAccessIcons.add);
